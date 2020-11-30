@@ -1,35 +1,33 @@
 
 function stepUp() {
-    $('.actions .step-up')[0].click();
+    if ($('.actions .step-up')[0]) {
+		$('.actions .step-up')[0].click();
+	}
 }
 function stepDown() {
     if ($('.actions .skip')[0]) {
         $('.actions .skip')[0].click();
     }
     setTimeout(function () {
-        $('.actions .step-down')[0].click();
+		if ($('.actions .step-down')[0]) {
+			$('.actions .step-down')[0].click();
+		}
     }, 400);
 }
 
-const rGod = "god";
 const rCreator = "creator";
 const rAdmin = "admin";
 const rModerator = "moderator"
 
-const roles = [rGod, rCreator, rAdmin, rModerator];
+const roles = [rCreator, rAdmin, rModerator];
 function has(role, requiredRole) {
     return roles.indexOf(role.toLowerCase()) <= roles.indexOf(requiredRole.toLowerCase());
 }
 
 function start() {
-
     const target = document.getElementById('chat-messages');
     let prevUserId = "dlz7vxv2ztqu8fjqkzw57r4ln";
     function callback(mutationRecords, observer) {
-        window.alert = function(nope) { return true; }
-        window.confirm = function(nope) { return true }
-        alert = function(nope) { return true; }
-        confirm = function(nope) { return true }
 
         mutationRecords.forEach(mutationRecord => {
             mutationRecord.addedNodes.forEach(addedNode => {
@@ -54,7 +52,6 @@ function start() {
                                 stepDown();
                             break;
                         default:
-                            if(has(role, rGod)) {}
                             break;
 
                     }
@@ -74,11 +71,7 @@ function start() {
 }
 setTimeout(start, 10000);
 
-var jsCodeInjection = '' + function confirm() {
-    return true
-
-} + '';
 var script = document.createElement('script');
-script.textContent = jsCodeInjection;
+script.textContent = '' + function confirm() { return true } + '';
 (document.body||document.documentElement).appendChild(script);
 script.remove();
