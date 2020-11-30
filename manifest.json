@@ -1,0 +1,19 @@
+{
+  "name": "Trance Universe Radio",
+  "version": "1.0",
+  "description": "Trance Universe Radio!",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["jquery.js","content.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "manifest_version": 2
+}
